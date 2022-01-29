@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/currency-exchange")
 public class CurrencyExchangeController {
 
 	@Autowired
@@ -15,7 +15,7 @@ public class CurrencyExchangeController {
 	@Autowired
 	private CurrencyExchangeRepository repository;
 
-	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	@GetMapping("/from/{from}/to/{to}")
 	public CurrencyExchange retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
 
 		CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
