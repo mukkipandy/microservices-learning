@@ -3,11 +3,12 @@ package com.learning.mukesh.currencyconversionservice;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,12 +16,16 @@ import org.springframework.web.client.RestTemplate;
 //@RequestMapping("/currency-conversion")
 public class CurrencyConversionController {
 
+	private Logger logger = LoggerFactory.getLogger(CurrencyConversionController.class);
+
 	@Autowired
 	private CurrencyExchangeProxy proxy;
 
 	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversion(@PathVariable String from, @PathVariable String to,
 			@PathVariable BigDecimal quantity) {
+
+		logger.info("calculateCurrencyConversion called with {} to {} for quantity {}", from, to, quantity);
 
 		HashMap<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("from", from);
@@ -41,6 +46,8 @@ public class CurrencyConversionController {
 	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversionFeign(@PathVariable String from, @PathVariable String to,
 			@PathVariable BigDecimal quantity) {
+		
+		logger.info("calculateCurrencyConversion called with {} to {} for quantity {}", from, to, quantity);
 
 		CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
 
