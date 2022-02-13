@@ -23,9 +23,9 @@ spec:
         app: currency-exchange
     spec:
       containers:
-      - image: in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+      - image: mukkipandy/currency-exchange-service-kubernetes:0.0.12-SNAPSHOT
         imagePullPolicy: IfNotPresent
-        name: mmv2-currency-exchange-service
+        name: currency-exchange-service-kubernetes
         readinessProbe:
           httpGet:
             port: 8000

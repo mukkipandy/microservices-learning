@@ -23,9 +23,9 @@ spec:
         app: currency-conversion
     spec:
       containers:
-      - image: in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT
+      - image: mukkipandy/currency-conversion-service-kubernetes:0.0.12-SNAPSHOT
         imagePullPolicy: IfNotPresent
-        name: mmv2-currency-conversion-service
+        name: currency-conversion-service-kubernetes
         envFrom:
           - configMapRef:
               name: currency-conversion
